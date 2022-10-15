@@ -47,6 +47,7 @@ enum {
     BT_HST3,
 #endif
     BAT_LVL,
+    K8_USER_START,
 };
 
 

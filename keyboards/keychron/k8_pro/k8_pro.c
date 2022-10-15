@@ -67,7 +67,10 @@ bool dip_switch_update_kb(uint8_t index, bool active) {
     return true;
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
+#ifdef BLUETOOTH_ENABLE
+    bluetooth_record_kb(keycode, record);
+#endif
     static uint8_t host_idx = 0;
 
     switch (keycode) {
@@ -133,7 +136,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #endif
             break;
     }
-    return true;
+    return process_record_user(keycode, record);
 }
 
 void keyboard_post_init_user(void) {
